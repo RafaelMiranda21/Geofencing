@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="polygonalGeofencing.Views.CadastroArea"
+             xmlns:viewModels="clr-namespace:polygonalGeofencing.ViewModels;assembly=polygonalGeofencing"           
+             Shell.NavBarIsVisible="False"
+             x:Name="Pagina">
+
+
+    <ContentPage.BindingContext>
+        <viewModels:CadastroAreaViewModel/>
+    </ContentPage.BindingContext>
+
+    <!--grid para organizar os elementos-->
+    <Grid RowDefinitions="Auto,Auto,Auto">
+        <!--botão voltar-->
+        <StackLayout  VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="400" HeightRequest="60" Grid.Row="0" >
+            <Frame BackgroundColor="Transparent">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" Command="{Binding Voltar}"/>
+                </Frame.GestureRecognizers>
+            </Frame>
+            <FlexLayout Margin="13,-30,0,0">
+                <ImageButton Source="voltar" WidthRequest="15" HeightRequest="20" Command="{Binding Voltar}" BackgroundColor="Transparent"></ImageButton>
+                <Label Text="Voltar" TextColor="Black" Margin="3,1,0,0" ></Label>
+            </FlexLayout>
+        </StackLayout>
+        <StackLayout Grid.Row="1" HorizontalOptions="Center" Margin="0,-40,0,0">
+            <Label Text="Cadastro de Area" FontSize="40"  HorizontalTextAlignment="Center" FontFamily="Metropolis" TextColor="#4A484D" Margin="0,50,0,0"></Label>
+            <!--Campo para receber o nome da fazenda-->
+            <Label Text="{Binding nomeFazenda}" FontSize="20"  HorizontalTextAlignment="Center" FontFamily="Metropolis" TextColor="#4A484D" ></Label>
+            <!--campo para receber o id da fazenda-->
+            <Label Text="{Binding idFazenda}" IsVisible="false"></Label>
+            <!--campo para colocar o nome da área-->
+            <Frame CornerRadius="30" BackgroundColor="#f2f2f2" HasShadow="False" WidthRequest="310" HeightRequest="15" Margin="0,50,0,10">
+                <Entry x:Name="cadastroNome" Text="{Binding nomeArea}" HorizontalTextAlignment="Start" FontSize="14" Placeholder="Nome da Área" HeightRequest="50" TextColor="Black" PlaceholderColor="#868787" Margin="15,-30,0,-30"></Entry>
+            </Frame>
+            <!--campo para colocar a descrição da área-->
+            <Frame CornerRadius="30" BackgroundColor="#f2f2f2" HasShadow="False" WidthRequest="310" HeightRequest="55" Margin="0,10,0,10">
+                <Editor x:Name="cadastroDesc" Text="{Binding descArea}" AutoSize="TextChanges" FontSize="14" Placeholder="Descrição&#10;Formato -> tipo: valor,  " HeightRequest="70" TextColor="Black" PlaceholderColor="#868787" Margin="15,0,0,-30"></Editor>
+            </Frame>
+        </StackLayout>
+        <!--botão para salvar as informações--> 
+        <StackLayout Grid.Row="2" Margin="0,20,0,0"  >
+            <Button x:Name="NovaArea" Text="Cadastrar" BackgroundColor="#2595ef" TextColor="white" WidthRequest="345" HeightRequest="55" HorizontalOptions="Center" CornerRadius="30" Margin="0,0,0,0" Command="{Binding novaArea}"></Button>
+        </StackLayout>
+
+        <!--lista para mostrar as áreas cadastradas-->
+        <ListView ItemsSource="{Binding listaArea}" Grid.Row="3" HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout  Padding="30,10" BackgroundColor="#F1F1F1">
+                            <Grid RowDefinitions="100" ColumnDefinitions="Auto,*,Auto,Auto,Auto,Auto" VerticalOptions="Center">
+                                <!--id da área em um campo oculto-->
+                                <Label Text="{Binding idArea}" IsVisible="false"></Label>
+                                <!--imagem representativa da área-->
+                                <Image Source="cerca" Grid.Row="0" Grid.Column="0" FlowDirection="LeftToRight" HeightRequest="50" WidthRequest="50" ></Image>
+                                <!--nome da área-->
+                                <Label Text="{Binding nome}" Grid.Row="0" Grid.Column="1" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
+                                <!--botão para editra a descrição da área-->
+                                <ImageButton x:Name="btnEditArea" Source="editar" Margin="10,0,0,0" WidthRequest="25" HeightRequest="25" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="3" Clicked="btnEditArea_Clicked" />
+                                <!--botão para adicionar a região da área-->
+                                <ImageButton x:Name="btnAddGeo" Source="addPoint" Margin="0,0,10,0" WidthRequest="22" HeightRequest="22" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="4" Clicked="btnAddGeo_Clicked" />
+                                <!--botão para excluir a área-->
+                                <ImageButton x:Name="btnExcluir" Source="lixeira" WidthRequest="15" HeightRequest="15" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="5" Clicked="btnExcluir_Clicked" />
+                                
+                            </Grid>
+                        </StackLayout>
+
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </Grid>
+
+    
+</ContentPage>

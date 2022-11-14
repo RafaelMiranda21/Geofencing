@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Shell.NavBarIsVisible="False"
+             xmlns:viewModels="clr-namespace:polygonalGeofencing.ViewModels;assembly=polygonalGeofencing"
+             Shell.PresentationMode="ModalAnimated"
+             x:Class="polygonalGeofencing.Views.AcessoFuncModal">
+
+
+    <ContentPage.BindingContext>
+        <viewModels:ControleAcesso/>
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="Auto,Auto,Auto">
+        <!--Botao para voltar-->
+        <StackLayout  VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="400" HeightRequest="60" Grid.Row="0" >
+            <Frame BackgroundColor="Transparent">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Voltar_Tapped" Command="{Binding Voltar}"/>
+                </Frame.GestureRecognizers>
+            </Frame>
+            <FlexLayout Margin="13,-30,0,0">
+                <ImageButton Source="voltar" x:Name="Voltar" WidthRequest="15" HeightRequest="20" Command="{Binding Voltar}"  BackgroundColor="Transparent"></ImageButton>
+                <Label Text="Voltar" TextColor="Black" Margin="3,1,0,0" ></Label>
+            </FlexLayout>
+        </StackLayout>
+        <!--Título da tela contendo a chamada e o nome do funcionário-->
+        <StackLayout Grid.Row="1" HorizontalOptions="Center" Margin="0,-40,0,0">
+            <Label Text="Controle de Permissões" FontSize="30"  HorizontalTextAlignment="Center" FontFamily="Metropolis" TextColor="#4A484D" Margin="0,50,0,0"></Label>
+            <Label Text="{Binding Funcionario}" FontSize="30"  HorizontalTextAlignment="Center" FontFamily="Metropolis" TextColor="#4A484D" Margin="0,0,0,0"></Label>
+            <Label x:Name="idFuncionario" Text="{Binding idFuncionario}" IsVisible="false"></Label>
+        </StackLayout>
+        <!--área do picker com as fazenda e os switchs para atribuir ou revogar permissão-->
+        <StackLayout Grid.Row="2" HeightRequest="300" WidthRequest="300" Padding="40,10">
+            <Label Text="{Binding NomeFazenda}" IsVisible="false"></Label>
+            <!--picker com a lista de fazendas que o usuário possui permissão-->
+            <Picker Title="Fazenda"
+                    x:Name="listaFazenda"
+                    SelectedIndexChanged="listaFazenda_SelectedIndexChanged"/>
+
+            <!--Switch para que o funcionário possa adicionar áreas na fazenda-->
+                <FlexLayout Direction="Row" AlignItems="Center"
+                JustifyContent="SpaceBetween" Margin="0,20,0,0">
+                    <Label Text="Criar Áreas" FontSize="20" TextColor="Black"></Label>
+
+                
+                    <Switch
+                        x:Name="AcessoArea"
+                        Toggled="AcessoArea_Toggled"
+                         >
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="On">
+                                    <VisualState.Setters>
+                                        <Setter Property="ThumbColor"
+                                Value="MediumSpringGreen" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Off">
+                                    <VisualState.Setters>
+                                        <Setter Property="ThumbColor"
+                                Value="Red" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Switch>
+                 </FlexLayout>
+
+            <!--Switch para que o funcionário possa adicionar funcionários-->
+            <FlexLayout Direction="Row" AlignItems="Center"
+                JustifyContent="SpaceBetween">
+                <Label Text="Adicionar Funcionarios" FontSize="20" TextColor="Black"></Label>
+                <Switch 
+                    x:Name="AcessoAddFunc"
+                    Toggled="AcessoAddFunc_Toggled">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="On">
+                                <VisualState.Setters>
+                                    <Setter Property="ThumbColor"
+                            Value="MediumSpringGreen" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Off">
+                                <VisualState.Setters>
+                                    <Setter Property="ThumbColor"
+                            Value="Red" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </Switch>
+            </FlexLayout>
+
+            <!--Switch para que o funcionário possa atribuir ou revogar permissões do funcionários-->
+            <FlexLayout Direction="Row" AlignItems="Center"
+                JustifyContent="SpaceBetween">
+                <Label Text="Atribuir Permissões" FontSize="20" TextColor="Black"></Label>
+                <Switch x:Name="AcessoAddPerm"
+                        Toggled="AcessoAddPerm_Toggled">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="On">
+                                <VisualState.Setters>
+                                    <Setter Property="ThumbColor"
+                            Value="MediumSpringGreen" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Off">
+                                <VisualState.Setters>
+                                    <Setter Property="ThumbColor"
+                            Value="Red" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </Switch>
+            </FlexLayout>
+            
+        </StackLayout>
+        
+        
+    </Grid>
+
+
+</ContentPage>

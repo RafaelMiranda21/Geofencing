@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Shell.NavBarIsVisible="False"
+             x:Class="polygonalGeofencing.Views.ListaFuncionario">
+
+
+    <!--Grid para organizar os elementos-->
+    <Grid RowDefinitions="Auto,Auto,Auto">
+        <!--Botão para voltar-->
+        <StackLayout  VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="400" HeightRequest="60" Grid.Row="0" >
+            <Frame BackgroundColor="Transparent">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" Command="{Binding Voltar}"/>
+                </Frame.GestureRecognizers>
+            </Frame>
+            <FlexLayout Margin="13,-30,0,0">
+                <ImageButton Source="voltar" WidthRequest="15" HeightRequest="20" Command="{Binding Voltar}" BackgroundColor="Transparent"></ImageButton>
+                <Label Text="Voltar" TextColor="Black" Margin="3,1,0,0" ></Label>
+            </FlexLayout>
+        </StackLayout>
+        <!--Titulo da página-->
+        <StackLayout Grid.Row="1" HorizontalOptions="Center" Margin="0,-40,0,0">
+            <Label Text="Lista de Funcionarios" FontSize="30"  HorizontalTextAlignment="Center" FontFamily="Metropolis" TextColor="#4A484D" Margin="0,50,0,0"></Label>
+        </StackLayout>
+        <!--Lista de funcionários-->
+        <ListView ItemsSource="{Binding listaFuncionario}" Grid.Row="2" HasUnevenRows="True" Margin="0,20,0,0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout  Padding="30,10" BackgroundColor="#F1F1F1">
+                            <Grid RowDefinitions="100" ColumnDefinitions="Auto,*,Auto,Auto,Auto,Auto" VerticalOptions="Center">
+                                <!--guarda o id do funcionário-->
+                                <Label Text="{Binding idFuncionario}" IsVisible="false"></Label>
+                                <!--imagem simbolisando os funcionários-->
+                                <Image Source="funcionarios" Grid.Row="0" Grid.Column="0" FlowDirection="LeftToRight" HeightRequest="50" WidthRequest="50" ></Image>
+                                <!--nome do funcionário-->
+                                <Label Text="{Binding nome}" Grid.Row="0" Grid.Column="1" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
+                                <!--botão para adicionar permissão-->
+                                <ImageButton x:Name="btnAddPerm" Source="editar" Margin="10,0,0,0" WidthRequest="25" HeightRequest="25" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="3" Clicked="btnAddPerm_Clicked" />
+                                <!--botão para excluir o funcionário-->
+                                <ImageButton x:Name="btnExcluir" Source="lixeira" WidthRequest="15" HeightRequest="15" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="5" Clicked="btnExcluir_Clicked" />
+
+                            </Grid>
+                        </StackLayout>
+
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </Grid>
+
+
+</ContentPage>

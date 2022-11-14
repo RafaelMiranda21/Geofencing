@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+    <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             Shell.NavBarIsVisible="False"
+             x:Class="polygonalGeofencing.Views.Home">
+
+
+
+    <!--Grid encapsulando todo o conteudo da página-->
+    <Grid RowDefinitions="*" BackgroundColor="#EFEFEF">
+        <RelativeLayout>
+            <!--Imagem do topo da página-->
+            <Image Source="bkgHomePage" Aspect="AspectFill" Margin="0,-137,0,0"></Image>
+
+            <FlexLayout RelativeLayout.XConstraint="30"
+                           RelativeLayout.YConstraint="60"
+                            >
+                <!--Moldura da imagem-->
+                <Frame Margin="10"
+                           BackgroundColor="#F1F1F1"
+                           CornerRadius="50"
+                           HeightRequest="70"
+                           WidthRequest="30"
+                          >
+                    <!--Imagem representantativa do usuário-->
+                    <Image Source="homem"
+                         Aspect="AspectFill"
+                         Margin="-11" 
+                         />
+                 </Frame>
+                
+                <!--Frase de boas vindas para o usuário-->
+                <StackLayout>
+                    <Label  
+                        Text="Bem Vindo(a)!"
+                       TextColor="White"
+                       FontSize="17"
+                       Margin="0,15,0,0"
+                      ></Label>
+                    <Label  x:Name="Usuario"
+                       TextColor="White"
+                       FontSize="17"
+                       Margin="0,-10,0,0"
+                      ></Label>
+                </StackLayout>
+               
+            </FlexLayout>
+            
+            <!--Botão para sair da conta logada-->
+            <FlexLayout RelativeLayout.XConstraint="300"
+                        RelativeLayout.YConstraint="15">
+                <Frame BackgroundColor="Transparent">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" Command="{Binding Sair}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <Label Text="Sair" TextColor="White" Margin="-10,0,10,0"></Label>
+                <ImageButton Source="sairBranco" WidthRequest="20" HeightRequest="20" Command="{Binding Sair}" BackgroundColor="Transparent">
+                </ImageButton>
+            </FlexLayout>
+        </RelativeLayout>
+     
+        <Frame Grid.Row="1" 
+               Margin="0,-190,0,0"
+                     BackgroundColor="#fff" 
+                     WidthRequest="270" 
+                     HeightRequest="130"
+                     HorizontalOptions="CenterAndExpand"
+                     CornerRadius="50"
+                     VerticalOptions="Start"
+                    HasShadow="True">
+            <!--grid para organizar as informações de visão geral-->
+            <Grid>
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Text="Visão Geral" HorizontalTextAlignment="Center"  Grid.Row="0" Grid.Column="1" FontSize="15" TextColor="Black"></Label>
+                <!--quantidade de fazenda-->
+                <StackLayout Grid.Column="0" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center">
+                    
+                    <Frame 
+                           BackgroundColor="Transparent"
+                           HeightRequest="30"
+                           WidthRequest="30"
+                          >
+                        <Image Source="fazenda"
+                         Aspect="AspectFill"
+                         Margin="-9" 
+                         />
+                    </Frame>
+                    <Label Text="Fazenda" TextColor="Black" HorizontalTextAlignment="Center"></Label>
+                    <Label x:Name="qtdFazenda" TextColor="Black" FontSize="17"
+                           HorizontalTextAlignment="Center"></Label>
+                </StackLayout>
+                <!--quantidade de área-->
+                <StackLayout Grid.Column="1" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center">
+                    
+                    <Frame Margin="10"
+                           BackgroundColor="Transparent"
+                           HeightRequest="40"
+                           WidthRequest="40"
+                          >
+                        
+                        <Image Source="iconArea"
+                         Aspect="AspectFill"
+                         Margin="-19"
+                         />
+                    </Frame>
+                    <Label Text="Área" TextColor="Black" HorizontalTextAlignment="Center"></Label>
+                    <Label x:Name="qtdArea" TextColor="Black" FontSize="17"
+                           HorizontalTextAlignment="Center"></Label>
+                </StackLayout>
+                <!--quantidade de funcionarios-->
+                <StackLayout Grid.Column="2" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Frame 
+                           BackgroundColor="Transparent"
+                           HeightRequest="30"
+                           WidthRequest="30"
+                          >
+
+                        <Image Source="funcionarios"
+                         Aspect="AspectFill"
+                         Margin="-9"
+                         />
+                    </Frame>
+                    <Label Text="Funcionario" TextColor="Black" HorizontalTextAlignment="Center"></Label>
+                    <Label x:Name="qtdFuncionario" Text="0" TextColor="Black" FontSize="17"
+                           HorizontalTextAlignment="Center"></Label>
+                </StackLayout>
+            </Grid>
+        </Frame>
+        <!--grid para organização dos cards-->
+        <StackLayout Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="400" HeightRequest="400" >
+            <ScrollView>
+            <Grid Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <!--card para adicionar fazenda-->
+                    <Frame x:Name="frameFazenda"
+                           Margin="10"
+                           CornerRadius="20"
+                           Grid.Column="0"
+                           Grid.Row="0"
+                           HeightRequest="100"
+                           >
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer  Tapped="AdicionarFazenda"/>
+                        </Frame.GestureRecognizers>
+                        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                            <ImageButton Source="addFazenda"
+                                     x:Name="cardFazenda"
+                                     WidthRequest="55"
+                                     HeightRequest="55"
+                                     BackgroundColor="Transparent"
+                                    
+                         ></ImageButton>
+
+                            <Label Text="Adicionar &#10; Fazenda" HorizontalTextAlignment="Center" TextColor="Black" FontSize="15">
+
+                            </Label>
+                        </StackLayout>
+                    </Frame>
+                <!--card para adicionar funcionario-->
+                    <Frame x:Name="frameAddFunc"
+                           Margin="10" 
+                           CornerRadius="20"
+                           Grid.Column="1"
+                           Grid.Row="0">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer  Tapped="AdicionarFuncionarios"/>
+                        </Frame.GestureRecognizers>
+                        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                            <Image Source="addFuncionarios"
+                         WidthRequest="50"
+                               HeightRequest="50"
+                        Margin="0,10,0,0"
+                         ></Image>
+
+                            <Label Text="Adicionar &#10; Funcionarios" HorizontalTextAlignment="Center" TextColor="Black" FontSize="15">
+
+                            </Label>
+                        </StackLayout>
+                    </Frame>
+                    <Frame x:Name="frameListaFunc"
+                           Margin="10"  
+                           CornerRadius="20"
+                           Grid.Column="0"
+                           Grid.Row="1">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped_1"/>
+                    </Frame.GestureRecognizers>
+                    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                        <ImageButton x:Name="ListaFunc" 
+                                     Source="listaFunc"
+                                     BackgroundColor="Transparent"
+                                     WidthRequest="60"
+                                     HeightRequest="60"
+                                     Margin="0,10,0,0"
+                         ></ImageButton>
+
+                        <Label Text="Lista de &#10; Funcionarios" HorizontalTextAlignment="Center" TextColor="Black" FontSize="15">
+
+                        </Label>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+            </ScrollView>
+        </StackLayout>
+    </Grid>
+
+
+</ContentPage>

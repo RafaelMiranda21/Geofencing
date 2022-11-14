@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             Shell.NavBarIsVisible="False"
+             x:Class="polygonalGeofencing.Views.Mapa">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout HorizontalOptions="Center" Orientation="Horizontal" Margin="0,30,0,0">
+                <!--Campo para receber o endereço da região-->
+                <Frame CornerRadius="30" BackgroundColor="#f2f2f2" HasShadow="False" WidthRequest="310" HeightRequest="15" Margin="0,0,0,10">
+                    <Entry x:Name="enderecoMapa" HorizontalTextAlignment="Start" FontSize="14" Placeholder="Endereço" TextColor="Black" PlaceholderColor="#868787" Margin="15,-30,0,-30"></Entry>
+                </Frame>
+                <!--botão para realizar a busca pela região-->
+                <ImageButton x:Name="iconLupa" Source="lupa" BackgroundColor="Transparent" WidthRequest="20" Clicked="iconLupa_Clicked"></ImageButton>
+            </StackLayout>
+            <!--Mapa da aplicação-->
+            <maps:Map IsShowingUser="True"  x:Name="map" PropertyChanged="map_PropertyChanged"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

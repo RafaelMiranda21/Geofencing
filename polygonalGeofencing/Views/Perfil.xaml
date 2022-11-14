@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Shell.NavBarIsVisible="False"
+             x:Class="polygonalGeofencing.Views.Perfil">
+    <ContentPage.Content>
+
+
+        <!--Grid para organizar os elementos-->
+        <Grid RowDefinitions="*,*,*">
+            <StackLayout Grid.Row="0" HorizontalOptions="Center" Margin="0,-40,0,0">
+                <Label Text="Perfil" FontSize="30"  HorizontalTextAlignment="Center" FontFamily="Metropolis" TextColor="#4A484D" Margin="0,50,0,0"></Label>
+                <RelativeLayout Grid.Row="0">
+
+                    <FlexLayout RelativeLayout.XConstraint="150"
+                           RelativeLayout.YConstraint="20"
+                            >
+                        <!--Moldura da imagem-->
+                        <Frame Margin="10"
+                           BackgroundColor="#cfcfcf"
+                           CornerRadius="50"
+                           HeightRequest="70"
+                           WidthRequest="30"
+                          >
+                            <!--Imagem representantativa do usuário-->
+                            <Image Source="homem"
+                         Aspect="AspectFill"
+                         Margin="-11" 
+                         />
+                        </Frame>
+
+                        <!--Frase de boas vindas para o usuário-->
+                        <StackLayout>
+                            <Label  
+                        Text="Bem Vindo(a)!"
+                       TextColor="White"
+                       FontSize="17"
+                       Margin="0,15,0,0"
+                      ></Label>
+                            <Label  x:Name="Usuario"
+                       TextColor="White"
+                       FontSize="17"
+                       Margin="0,-10,0,0"
+                      ></Label>
+                        </StackLayout>
+                    </FlexLayout>
+                </RelativeLayout>
+            </StackLayout>
+
+            <StackLayout Grid.Row="1" HorizontalOptions="FillAndExpand">
+                <Label Text="Informação do Usuário" FontSize="19" FontFamily="Metropolis" TextColor="#5470fe" Margin="20,-50,0,0"></Label>
+                <Grid RowDefinitions="*,*" ColumnDefinitions="*,*" Padding="20,10,20,0">
+                    <!--Campo contendo o primeiro nome do usuário-->
+                    <StackLayout Grid.Row="0" Grid.Column="0">
+                        <Label Text="Primeiro Nome" FontSize="14" TextColor="Gray"></Label>
+                        <Frame HasShadow="False" BorderColor="#d9d9d9" CornerRadius="20">
+                            <Label Text="{Binding Nome}" FontSize="16" Margin="0,-5,0,0" TextColor="Black"></Label>
+                        </Frame>
+                    </StackLayout>
+                    <!--Campo contendo o sobrenome do usuário-->
+                    <StackLayout Grid.Row="0" Grid.Column="1" Margin="20,0,0,0">
+                        <Label Text="Último Nome" FontSize="14" TextColor="Gray"></Label>
+                        <Frame HasShadow="False" BorderColor="#d9d9d9" CornerRadius="20" >
+                            <Label Text="{Binding Sobrenome}" FontSize="16" Margin="0,-5,0,0" TextColor="Black"></Label>
+                        </Frame>
+                    </StackLayout>
+                </Grid>
+                <!--Campo contendo o E-mail do usuário-->
+                <StackLayout Margin="0,-70,0,0" Padding="20,0,20,0">
+                    <Label Text="E-mail" FontSize="14" TextColor="Gray"></Label>
+                    <Frame HasShadow="False" BorderColor="#d9d9d9" CornerRadius="20">
+                        <Label Text="{Binding Email}" FontSize="16" Margin="0,-5,0,0" TextColor="Black"></Label>
+                    </Frame>
+                </StackLayout>
+
+            </StackLayout>
+        </Grid>
+
+
+
+
+
+
+    </ContentPage.Content>
+</ContentPage>

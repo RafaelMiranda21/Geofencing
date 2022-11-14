@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="polygonalGeofencing.Views.cadastroModal"
+             Shell.PresentationMode="ModalAnimated">
+    
+    <!--Grid para organizar os elementos-->
+    <Grid RowDefinitions="Auto,Auto"> 
+        <StackLayout Grid.Row="0" HorizontalOptions="Center">
+            <Label Text="Cadastrar" FontSize="40" HorizontalTextAlignment="Center" FontFamily="Metropolis" TextColor="#4A484D" Margin="0,50,0,0"></Label>
+            <Label Text="Insira suas informações para cadastrar" HorizontalTextAlignment="Center" FontSize="15" FontFamily="Metropolis" TextColor="#7C7D7E" Margin="0,0,0,0"></Label>
+            <!--Entrys com capitalize word, ou seja a primeira letra sempre vai ser maiuscula--> 
+            <Frame CornerRadius="30" BackgroundColor="#f2f2f2" HasShadow="False" WidthRequest="310" HeightRequest="15" Margin="0,50,0,10">
+                <Entry x:Name="cadastroNome" Text="{Binding Nome }"  HorizontalTextAlignment="Start" FontSize="14" Placeholder="Nome" HeightRequest="50" TextColor="Black" PlaceholderColor="#868787" Margin="15,-30,0,-30">
+                    <Entry.Keyboard>
+                        <Keyboard x:FactoryMethod="Create">
+                            <x:Arguments>
+                                <KeyboardFlags>CapitalizeWord</KeyboardFlags>
+                            </x:Arguments>
+                        </Keyboard>
+                    </Entry.Keyboard>
+                </Entry>
+            </Frame>
+            <!--Frame campo sobrenome-->
+            <Frame CornerRadius="30" BackgroundColor="#f2f2f2" HasShadow="False" WidthRequest="310" HeightRequest="15" Margin="0,0,0,10">
+                <Entry x:Name="cadastroSobranome"  Text="{Binding Sobrenome }" HorizontalTextAlignment="Start" FontSize="14" Placeholder="Sobrenome" HeightRequest="50" TextColor="Black" PlaceholderColor="#868787" Margin="15,-30,0,-30">
+                    <Entry.Keyboard>
+                        <Keyboard x:FactoryMethod="Create">
+                            <x:Arguments>
+                                <KeyboardFlags>CapitalizeWord</KeyboardFlags>
+                            </x:Arguments>
+                        </Keyboard>
+                    </Entry.Keyboard>
+                </Entry>
+            </Frame>
+            <!--frane campo e-mail-->
+            <Frame CornerRadius="30" BackgroundColor="#f2f2f2" HasShadow="False" WidthRequest="310" HeightRequest="15" Margin="0,0,0,10">
+                <Entry x:Name="cadastroEmail" Text="{Binding Email }" HorizontalTextAlignment="Start" FontSize="14" Placeholder="E-mail" HeightRequest="50" TextColor="Black" PlaceholderColor="#868787" Margin="15,-30,0,-30"></Entry>
+            </Frame>
+            <!--Frame campo senha-->
+            <Frame CornerRadius="30" BackgroundColor="#f2f2f2" HasShadow="False" WidthRequest="310" HeightRequest="15" Margin="0,0,0,10">
+                <Entry x:Name="cadastroSenha" Text="{Binding Senha }" HorizontalTextAlignment="Start" FontSize="14" IsPassword="True" Placeholder="Senha" TextColor="Black" PlaceholderColor="#868787" Margin="15,-30,0,-30"></Entry>
+            </Frame>
+            <!--Frame campo confirmação de senha-->
+            <Frame CornerRadius="30" BackgroundColor="#f2f2f2" HasShadow="False" WidthRequest="310" HeightRequest="15" Margin="0,0,0,10">
+                <Entry x:Name="cadastroConfSenha" Text="{Binding confSenha }" HorizontalTextAlignment="Start" FontSize="14" IsPassword="True" Placeholder="Confirmar Senha" TextColor="Black" PlaceholderColor="#868787" Margin="15,-30,0,-30"></Entry>
+            </Frame>
+
+        </StackLayout>
+        <!--Botões cadastrar e logar-->
+        <StackLayout Grid.Row="1" Margin="0,50,0,0"  >
+            <Button x:Name="btnCadastrar" Text="Cadastrar" BackgroundColor="#2595ef" TextColor="white" WidthRequest="345" HeightRequest="55" HorizontalOptions="Center" CornerRadius="30" Margin="0,0,0,0" Command="{Binding NovoUsuario}"></Button>
+
+
+            <StackLayout HorizontalOptions="Center" Grid.Column="1" Orientation="Horizontal" Spacing="10">
+                <Label Text="Já possui uma conta?" FontSize="14" FontFamily="Cabin" TextColor="#4A484D"></Label>
+                <Button x:Name="btnEntrar" Text="Entrar" FontSize="13" FontFamily="Cabin" TextColor="#2595ef" BackgroundColor="Transparent" Margin="-13,-13,0,0" Clicked="btnEntrar_Clicked" ></Button>
+            </StackLayout>
+
+
+        </StackLayout>
+    </Grid>
+</ContentPage>

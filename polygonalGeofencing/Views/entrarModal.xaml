@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="polygonalGeofencing.Views.entrarModal"
+             Shell.PresentationMode="ModalAnimated">
+
+
+    <Grid RowDefinitions="*"> <!--Grid-->
+        <StackLayout HorizontalOptions="Center">
+            <Label Text="Entrar" FontSize="40" HorizontalTextAlignment="Center" FontFamily="Metropolis" TextColor="#4A484D" Margin="0,50,0,0"></Label>
+            <Label Text="Insira suas informações para entrar" HorizontalTextAlignment="Center" FontSize="15" FontFamily="Metropolis" TextColor="#7C7D7E" Margin="0,0,0,0"></Label>
+            
+            <!--Campos para o usuário preencher-->
+            <Frame CornerRadius="30" BackgroundColor="#f2f2f2" HasShadow="False" WidthRequest="310" HeightRequest="15" Margin="0,50,0,10">
+                <Entry x:Name="EntrarNome" Text="{Binding Email }" HorizontalTextAlignment="Start" FontSize="14" Placeholder="E-mail" HeightRequest="50" TextColor="Black" PlaceholderColor="#868787" Margin="15,-30,0,-30"></Entry>
+            </Frame>
+            <Frame CornerRadius="30" BackgroundColor="#f2f2f2" HasShadow="False" WidthRequest="310" HeightRequest="15" Margin="0,0,0,10">
+                <Entry x:Name="EntrarSenha" Text="{Binding Senha }" HorizontalTextAlignment="Start" FontSize="14" IsPassword="True" Placeholder="Senha" TextColor="Black" PlaceholderColor="#868787" Margin="15,-30,0,-30"></Entry>
+            </Frame>
+
+        </StackLayout>
+        <StackLayout Grid.Row="1" Margin="0,30,0,0" >
+            
+            <!--Botões de entrar e de se cadastrar-->
+            <Button Text="Entrar" x:Name="btnEntrar" BackgroundColor="#2595ef" TextColor="white" WidthRequest="345" HeightRequest="55" HorizontalOptions="Center" CornerRadius="30" Margin="0,0,0,0" Command="{Binding Entrar}"></Button>
+            
+            <StackLayout HorizontalOptions="Center" Grid.Column="1" Orientation="Horizontal" Spacing="10">
+                <Label Text="Não possui uma conta?" FontSize="14" FontFamily="Cabin" TextColor="#4A484D"></Label>
+                <Button x:Name="btnCadastrar" Text="cadastre-se" FontSize="13" FontFamily="Cabin" TextColor="#2595ef" BackgroundColor="Transparent" Margin="-13,-13,0,0" Clicked="btnCadastrar_Clicked"></Button>
+
+            </StackLayout>
+
+
+        </StackLayout>
+    </Grid>
+</ContentPage>

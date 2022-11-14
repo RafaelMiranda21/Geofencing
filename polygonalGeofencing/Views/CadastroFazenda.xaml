@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="polygonalGeofencing.Views.CadastroFazenda"
+             x:Name="Pagina"
+             xmlns:viewModels="clr-namespace:polygonalGeofencing.ViewModels;assembly=polygonalGeofencing"
+             Shell.NavBarIsVisible="False">
+
+    <ContentPage.BindingContext>
+        <viewModels:CadastroFazendaViewModel/>
+    </ContentPage.BindingContext>
+
+        <!--Grid para organizar os elementos-->
+        <Grid RowDefinitions="Auto,Auto,Auto">
+
+            <!--elemento contendo o botão para voltar para a home-->
+        <StackLayout  VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="400" HeightRequest="60" Grid.Row="0" >
+            <Frame BackgroundColor="Transparent">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" Command="{Binding Voltar}"/>
+                </Frame.GestureRecognizers>
+            </Frame>
+            <FlexLayout Margin="13,-30,0,0">
+                <ImageButton Source="voltar" WidthRequest="15" HeightRequest="20" Command="{Binding Voltar}" BackgroundColor="Transparent"></ImageButton>
+                <Label Text="Voltar" TextColor="Black" Margin="3,1,0,0" ></Label>
+            </FlexLayout>    
+        </StackLayout>
+
+        <StackLayout Grid.Row="1" HorizontalOptions="Center" Margin="0,-40,0,0">
+            <Label Text="Cadastrar Fazenda" FontSize="40"  HorizontalTextAlignment="Center" FontFamily="Metropolis" TextColor="#4A484D" Margin="0,50,0,0"></Label>
+            <Label Text="Insira suas informações para cadastrar" HorizontalTextAlignment="Center" FontSize="15" FontFamily="Metropolis" TextColor="#7C7D7E" Margin="0,0,0,0"></Label>
+           <!--campo para o usuário digitar o nome da fazenda-->
+            <Frame CornerRadius="30" BackgroundColor="#f2f2f2" HasShadow="False" WidthRequest="310" HeightRequest="15" Margin="0,50,0,10">
+                <Entry x:Name="cadastroNome" Text="{Binding Nome}" HorizontalTextAlignment="Start" FontSize="14" Placeholder="Nome da Fazenda" HeightRequest="50" TextColor="Black" PlaceholderColor="#868787" Margin="15,-30,0,-30"></Entry>
+            </Frame>
+        </StackLayout>
+            
+            <!--Botão para cadastrar a fazenda-->
+        <StackLayout Grid.Row="2" Margin="0,20,0,0"  >
+            <Button x:Name="NovaFazenda" Text="Cadastrar" BackgroundColor="#2595ef" TextColor="white" WidthRequest="345" HeightRequest="55" HorizontalOptions="Center" CornerRadius="30" Margin="0,0,0,0" Command="{Binding NovaFazenda}"></Button>
+        </StackLayout>
+
+       <!--Lista de fazendas cadastradas-->
+        <ListView ItemsSource="{Binding listaFazendas}" Grid.Row="3" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+
+                        <StackLayout  Padding="30,10" BackgroundColor="#F1F1F1">
+                            <Grid RowDefinitions="100" ColumnDefinitions="Auto,*,Auto,Auto" VerticalOptions="Center">
+                                <!--id da fazenda com isVisible false, o usuário não visualisa esse campo-->
+                                <Label Text="{Binding idFazenda}" IsVisible="false"></Label>
+                                <!--imagem do icone da fazenda-->
+                                <Image Source="fazenda" Grid.Row="0" Grid.Column="0" FlowDirection="LeftToRight" HeightRequest="30" WidthRequest="30" ></Image>
+                                <!--nome da fazenda cadastrada-->
+                                <Label Text="{Binding nome}" Grid.Row="0" Grid.Column="1" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FlowDirection="RightToLeft"></Label>
+                                <!--botão para cadastrar area na fazenda-->
+                                <ImageButton x:Name="btnAddArea" Source="addArea" Margin="10,0,0,0" WidthRequest="30" HeightRequest="30" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="2" Clicked="btnAddArea_Clicked" />
+                                <!--botão para excluir a fazenda-->
+                                <ImageButton x:Name="btnExcluir" Source="lixeira" WidthRequest="15" HeightRequest="15" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="3" Clicked="btnExcluir_Clicked" />
+                            </Grid>
+                        </StackLayout>
+                                                 
+                    </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+         </ListView>
+  
+    </Grid>
+
+    
+
+</ContentPage>

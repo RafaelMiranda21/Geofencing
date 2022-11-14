@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Shell.NavBarIsVisible="False"
+             x:Class="polygonalGeofencing.Views.CadastroFuncionario">
+
+
+    <StackLayout Margin="10">
+        <Grid RowDefinitions="Auto,Auto">
+            <!--botão voltar-->
+            <StackLayout  VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="400" HeightRequest="60" Grid.Row="0" >
+                <Frame BackgroundColor="Transparent">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" Command="{Binding Voltar}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <FlexLayout Margin="13,-30,0,0">
+                    <ImageButton Source="voltar" WidthRequest="15" HeightRequest="20" Command="{Binding Voltar}" BackgroundColor="Transparent"></ImageButton>
+                    <Label Text="Voltar" TextColor="Black" Margin="3,1,0,0" ></Label>
+                </FlexLayout>
+            </StackLayout>
+            <StackLayout Grid.Row="1" HorizontalOptions="Center" Margin="0,-30,0,0" >
+                <!--Titulo-->
+                <Label Text="Cadastrar Funcionário" FontSize="40" HorizontalTextAlignment="Center" FontFamily="Metropolis" TextColor="#4A484D" Margin="0,50,0,0"></Label>
+                <!--Campo nome do funcionario-->
+                <Frame CornerRadius="30" BackgroundColor="#f2f2f2" HasShadow="False" WidthRequest="310" HeightRequest="15" Margin="0,50,0,10">
+                    <Entry x:Name="cadastroNome" Text="{Binding Nome}"  HorizontalTextAlignment="Start" FontSize="14" Placeholder="Nome" HeightRequest="50" TextColor="Black" PlaceholderColor="#868787" Margin="15,-30,0,-30">
+                        <Entry.Keyboard>
+                            <Keyboard x:FactoryMethod="Create">
+                                <x:Arguments>
+                                    <KeyboardFlags>Suggestions,CapitalizeWord</KeyboardFlags>
+                                </x:Arguments>
+                            </Keyboard>
+                        </Entry.Keyboard>
+                    </Entry>
+                </Frame>
+                <!--Campo sobrenome do funcionario-->
+                <Frame CornerRadius="30" BackgroundColor="#f2f2f2" HasShadow="False" WidthRequest="310" HeightRequest="15" Margin="0,0,0,10">
+                    <Entry x:Name="cadastroSobranome"  Text="{Binding Sobrenome }" HorizontalTextAlignment="Start" FontSize="14" Placeholder="Sobrenome" HeightRequest="50" TextColor="Black" PlaceholderColor="#868787" Margin="15,-30,0,-30">
+                        <Entry.Keyboard>
+                            <Keyboard x:FactoryMethod="Create">
+                                <x:Arguments>
+                                    <KeyboardFlags>Suggestions,CapitalizeWord</KeyboardFlags>
+                                </x:Arguments>
+                            </Keyboard>
+                        </Entry.Keyboard>
+                    </Entry>
+                </Frame>
+                <!--Campo email do funcionario-->
+                <Frame CornerRadius="30" BackgroundColor="#f2f2f2" HasShadow="False" WidthRequest="310" HeightRequest="15" Margin="0,0,0,10">
+                    <Entry x:Name="cadastroEmail" Text="{Binding Email }" HorizontalTextAlignment="Start" FontSize="14" Placeholder="E-mail" HeightRequest="50" TextColor="Black" PlaceholderColor="#868787" Margin="15,-30,0,-30"></Entry>
+                </Frame>
+                <!--senha do funcionario-->
+                <Frame CornerRadius="30" BackgroundColor="#f2f2f2" HasShadow="False" WidthRequest="310" HeightRequest="15" Margin="0,0,0,10">
+                    <Entry x:Name="cadastroSenha" Text="{Binding Senha }" HorizontalTextAlignment="Start" FontSize="14" IsPassword="True" Placeholder="Senha" TextColor="Black" PlaceholderColor="#868787" Margin="15,-30,0,-30"></Entry>
+                </Frame>
+                <!--confirmar senha do funcionario-->
+                <Frame CornerRadius="30" BackgroundColor="#f2f2f2" HasShadow="False" WidthRequest="310" HeightRequest="15" Margin="0,0,0,10">
+                    <Entry x:Name="cadastroConfSenha" Text="{Binding confSenha }" HorizontalTextAlignment="Start" FontSize="14" IsPassword="True" Placeholder="Confirmar Senha" TextColor="Black" PlaceholderColor="#868787" Margin="15,-30,0,-30"></Entry>
+                </Frame>
+
+            </StackLayout>
+            <!--botão para salvar as informações no banco de dados-->
+            <StackLayout Grid.Row="2" Margin="0,50,0,0"  >
+                <Button x:Name="btnCadastrar" Text="Cadastrar" BackgroundColor="#2595ef" TextColor="white" WidthRequest="345" HeightRequest="55" HorizontalOptions="Center" CornerRadius="30" Margin="0,0,0,0" Command="{Binding NovoUsuario}"></Button>
+            </StackLayout>
+        </Grid>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             x:Class="polygonalGeofencing.Views.CadastroPontos"
+             Shell.NavBarIsVisible="False"
+             x:Name="PaginaPontos">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout  VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="400" HeightRequest="60" Grid.Row="0"  >
+                <Frame BackgroundColor="Transparent" HeightRequest="60">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" Command="{Binding Voltar}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <StackLayout Margin="13,-30,0,15">
+                    
+                    <FlexLayout >
+                        
+                        <ImageButton Source="voltar" WidthRequest="15" HeightRequest="20" Command="{Binding Voltar}" BackgroundColor="Transparent"></ImageButton>
+                        <Label Text="Voltar" TextColor="Black" Margin="3,1,0,0" ></Label>
+                        <!--Nome da área-->
+                        <Label Text="{Binding nomeArea}" Margin="45,-5,0,0" x:Name="txtArea"  FontSize="Large" TextColor="Black"/>
+                        <!--id da área em um campo oculto-->
+                        <Label Text="{Binding idArea}" IsVisible="false" x:Name="idarea"></Label>
+                               
+                    </FlexLayout>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                <!--Campo para receber o endereço da região-->
+                <Frame CornerRadius="30" BackgroundColor="#f2f2f2" HasShadow="False" WidthRequest="310" HeightRequest="15" Margin="0,0,0,10">
+                    <Entry x:Name="enderecoMapa" HorizontalTextAlignment="Start" FontSize="14" Placeholder="Endereço" TextColor="Black" PlaceholderColor="#868787" Margin="15,-30,0,-30"></Entry>
+                </Frame>
+                <!--botão para realizar a busca pela região-->
+                <ImageButton x:Name="iconLupa" Source="lupa" BackgroundColor="Transparent" WidthRequest="20" Clicked="iconLupa_Clicked"></ImageButton>
+            </StackLayout>
+            <!--mapa-->
+            <maps:Map IsShowingUser="True" x:Name="map" MapClicked="map_MapClicked" />
+        </StackLayout>
+    </ContentPage.Content>
+    
+    
+</ContentPage>
+
